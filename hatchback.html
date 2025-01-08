@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveMates AutoHub</title>
+    <link rel="icon" type="image" href="picture/car.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #141414, #4c4b4d);
+            color: #eee;
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+            header {
+            display: flex;
+            align-items: center;
+            background: url('picture/picture9.jpg') no-repeat center/cover;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            margin-right: 1rem;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Tambahkan bayangan teks */
+            background: linear-gradient(90deg, #20c42d, #d4dd24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Teks gradien */
+            animation: pulse 2s infinite; /* Tambahkan animasi */
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #11a15e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            padding: 0.8rem 2rem;
+            margin: 0 0.5rem;
+            color: #f1faee;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #03512c;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #d6d25a;
+            color: #f1faee;
+            transform: scale(1.1);
+        }
+        
+        .section {
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            background: #222222;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 3px solid #11a15e;
+            opacity: 0;
+            animation: fadeInSection 2s forwards;
+        }
+
+        .section:hover {
+            background: #333333;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #11a15e;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #eee;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #333333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 280px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #118b52;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(34, 122, 32, 0.5);
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #32e390;
+            text-transform: uppercase;
+        }
+
+        .card img {
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .card button {
+            background-color: #0d9142;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 231, 54, 0.932);
+        }
+
+        .card button:hover {
+            background-color: #dae332;
+            box-shadow: 0 5px 20px rgba(0, 188, 212, 0.5);
+        }
+
+        footer {
+            background-color: #222222;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            border-top: 2px solid #32e390;
+        }
+
+        footer p {
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeInSection {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body> 
+    <header>
+    <img src="picture/picturelogo.jpg" alt="DriveMates AutoHub" style="width: 100px; height: 100px; border-radius: 50%;">
+    <div>
+        <h1>DriveMates AutoHub</h1>
+        <p>Your trusted used car dealership</p>
+    </div>
+</div>
+</header>
+   
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="suv.html">SUV</a>
+        <a href="mpv.html">MPV</a>
+        <a href="hatchback.html">HATCHBACK</a>
+        <a href="sedans.html">SEDAN</a>
+    </nav>
+
+    <section id="products" class="section">
+        <h2>HATCHBACK</h2>
+        <p>Experience the perfect blend of style, performance, and practicality with our latest hatchback! </p>
+        <div class="card-container">
+
+            <div class="card">
+                <h3>Proton Iriz</h3>
+                <img src="picture/iriz.jpg" alt="Hatchback">
+                <p>RM 45, 000</p>
+                <p>affordable car for this hatchback segments.</p>
+                <button onclick="window.open('https://wa.me/1234567890?text=I%20am%20interested%20in%20Proton%20Iriz')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Mazda 2</h3>
+                <img src="picture/mazda 2.jpg" alt="Hatchback">
+                <P>RM 108, 000</P>
+                <p>comfortable with wide seats for driver and passengers.</p>
+                <button onclick="window.open('https://wa.me/1234567890?text=I%20am%20interested%20in%20Mazda%202')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Perodua Myvi</h3>
+                <img src="picture/myvi.jpg" alt="Hatchback">
+                <P>RM 49, 500</P>
+                <p>Low Maintenance Costs as spare parts are readily available.</p>
+                <button onclick="window.open('https://wa.me/1234567890?text=I%20am%20interested%20in%20Perodua%20Myvi')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Suzuki Swift</h3>
+                <img src="picture/swift.jpg" alt="Hatchback">
+                <P>RM 115, 000</P>
+                <p>very futuristic and sporty design while exceeding the top speed to the fullest.</p>
+                <button onclick="window.open('https://wa.me/1234567890?text=I%20am%20interested%20in%20Suzuki%20Swift')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Toyota Yaris</h3>
+                <img src="picture/yaris.jpg" alt="Hatchback">
+                <P>RM 75, 000</P>
+                <p>very suitable for all types of users in Malaysia.</p>
+                <button onclick="window.open('https://wa.me/1234567890?text=I%20am%20interested%20in%20Toyota%20Yaris')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Hyundai Veloster</h3>
+                <img src="picture/veloster.jpg" alt="Hatchback">
+                <P>RM 68, 980</P>
+                <p>Stylish and elegant between power and design.</p>
+                <button onclick="window.open('https://wa.me/1234567890?text=I%20am%20interested%20in%20Hyundai%20Veloster')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Honda Jazz</h3>
+                <img src="picture/jazz.jpg" alt="Hatchback">
+                <P>RM 38, 000 </P>
+                <p>Using a SKYACTIV Engine that provides a balance between power and fuel efficiency.</p>
+                <button onclick="window.open('https://wa.me/1234567890?text=I%20am%20interested%20in%20Honda%20Jazz')">Buy Here</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 DriveMates AutoHub. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

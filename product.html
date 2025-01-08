@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveMates AutoHub</title>
+    <link rel="icon" type="image/png" href="picture/car.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #141414, #4c4b4d);
+            color: #eee;
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7) url('picture/ka9.png') no-repeat center/cover;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            margin-right: 1rem;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ff512f, #dd2476);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(34, 34, 34, 0.8);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ff4081; /* Border added for nav */
+        }
+
+        nav a {
+            padding: 0.8rem 2.5rem;
+            margin: 0 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: linear-gradient(80deg, #ff512f, #dd2476);
+            border-radius: 25px;
+            transition: all 0.5s ease;
+            box-shadow: 0 4px 8px rgba(255, 81, 47, 0.3);
+        }
+
+        nav a:hover {
+            background: #fff;
+            color: #dd2476;
+            border-color: #ff512f;
+            box-shadow: 0 6px 10px rgba(255, 81, 47, 0.5);
+            transform: scale(1.1);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            background: #222222;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transition: background 0.3s ease;
+            opacity: 0;
+            animation: fadeInSection 2s forwards;
+            border: 3px solid #ff4081;
+        }
+
+        .section:hover {
+            background: #333333;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #ff4081;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInSection 2s forwards;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #eee;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInSection 2s forwards;
+        }
+
+        .card {
+            background: #333333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 280px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #ff4081;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 64, 129, 0.5);
+            animation: hoverCard 0.5s ease-in-out;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ff4081;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card img {
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card button {
+            background-color: #ff4081;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+        }
+
+        .card button:hover {
+            background-color: #00bcd4;
+            box-shadow: 0 5px 20px rgba(0, 188, 212, 0.5);
+        }
+        .explore-button {
+    display: inline-block;
+    background-color: #ff4081;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+}
+
+.explore-button:hover {
+    background-color: #00bcd4;
+    box-shadow: 0 5px 20px rgba(0, 188, 212, 0.5);
+}
+
+
+        footer {
+            background-color: #222222;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            border-top: 2px solid #ff4081;
+        }
+
+        footer p {
+            font-size: 1.2rem;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes headerAnimation {
+            0% {
+                background: linear-gradient(45deg, #ff4081, #00bcd4);
+            }
+            100% {
+                background: linear-gradient(45deg, #ff512f, #dd2476);
+            }
+        }
+
+        @keyframes fadeInSection {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes hoverCard {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="picture/picturelogo.jpg" alt="DriveMates AutoHub Logo">
+        <div>
+            <h1>DriveMates AutoHub</h1>
+            <p>Your trusted used car dealership</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <section id="home" class="section">
+        <h2>HOME</h2>
+        <p>Welcome to DriveMates AutoHub. We provide an easy, safe, and satisfying car buying experience. Our selection of used cars undergoes thorough inspection by professionals to ensure top quality. Choose from a variety of sedans, hatchbacks, SUVs, and MPVs, all with full documentation and a quality guarantee. Financing options available for easy purchases!</p>
+        <h2>Our Tagline</h2>
+        <p>"Unleash the speed within DriveMates AutoHub brings you high-performance vehicles that roars with power and comfartability."</p>
+    </section>
+
+    <section id="products" class="section">
+        <h2>Our Products</h2>
+        <p>Explore a variety of used cars that suit different needs. Whether you're looking for an adventure, family outings, or city driving, we have options for you.</p>
+        <div class="card-container">
+
+            <div class="card">
+                <h3>SUVs</h3>
+                <img src="picture/suv2.jpg" alt="SUV">
+                <p>Perfect for adventures and family outings. SUVs offer power, space, and versatility.</p>
+                <a href="suv.html" class="explore-button">Explore SUVs</a>
+            </div>
+        
+            <div class="card">
+                <h3>MPVs</h3>
+                <img src="picture/mpv.jpg" alt="MPV">
+                <p>Spacious and practical, ideal for larger families or group trips.</p>
+                <a href="mpv.html" class="explore-button">Explore MPVs</a>
+            </div>
+        
+            <div class="card">
+                <h3>Hatchbacks</h3>
+                <img src="picture/hatchback.jpg" alt="Hatchback">
+                <p>Compact, efficient, and perfect for city driving with tight parking spots.</p>
+                <a href="hatchback.html" class="explore-button">Explore Hatchbacks</a>
+            </div>
+        
+            <div class="card">
+                <h3>Sedans</h3>
+                <img src="picture/sedan3.jpg" alt="Sedan">
+                <p>Elegance and comfort, offering style and reliability.</p>
+                <a href="sedans.html" class="explore-button">Explore Sedans</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 DriveMates AutoHub. All Rights Reserved.</p>
+    </footer>
+    <script>
+        // Array gambar
+        const images = ['picture/ka.webp', 'picture/ka5.jpg', 'picture/back2.jpg', 'picture/ka7.jpg'];
+        let index = 0;
+
+        // Fungsi untuk menukar gambar
+        function changeBackground() {
+            document.body.style.backgroundImage = `url(${images[index]})`;
+            index = (index + 1) % images.length; // Pindah ke gambar berikutnya
+        }
+
+        // Tukar gambar setiap 2 detik
+        setInterval(changeBackground, 2000);
+
+        // Array of colors for border animation
+        const colors = ['#ff512f', '#dd2476', '#4caf50', '#009688', '#3f51b5', '#f39c12'];
+        let colorIndex = 0;
+
+        // Function to change the border color
+        function changeBorderColor() {
+            document.querySelector('.section').style.borderColor = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length; // Move to the next color
+        }
+
+        // Change border color every 2 seconds
+        setInterval(changeBorderColor, 2000);
+    </script>
+</body>
+</html>

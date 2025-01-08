@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveMates AutoHub</title>
+    <link rel="icon" type="image/png" href="car.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1d3557, #457b9d);
+            color: #f1faee;
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7) url('picture/ka9.png') no-repeat center/cover;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            margin-right: 1rem;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #f06969, #dd2476);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #457b9d;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            padding: 0.8rem 2rem;
+            margin: 0 0.5rem;
+            color: #f1faee;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #1d3557;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #457b9d;
+            color: #f1faee;
+            transform: scale(1.1);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            background: #1d3557;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInSection 2s ease;
+        }
+
+        .section:hover {
+            background: #264653;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #D1E2C4;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #264653;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #D1E2C4;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(69, 123, 157, 0.5);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #D1E2C4;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card button {
+            background-color: #2a9d8f;
+            color: #f1faee;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #457b9d;
+        }
+
+        footer {
+            background-color: #1d3557;
+            color: #f1faee;
+            text-align: center;
+            padding: 2rem;
+            border-top: 5px solid #457b9d;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        @keyframes fadeInSection {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="pic/LOGO.png" alt="DriveMates Logo">
+        <div class="header-content">
+            <h1>DriveMates AutoHub</h1>
+            <p>Your trusted used car dealership</p>
+        </div>
+    </header>
+
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="suv.html">SUV</a>
+        <a href="mpv.html">MPV</a>
+        <a href="hatchback.html">HATCHBACK</a>
+        <a href="sedans.html">SEDAN</a>
+    </nav>
+
+    <section id="products" class="section">
+        <h2>SUV'S</h2>
+        <p>Explore a variety of used cars that suit different needs. Whether you're looking for an adventure, family outings, or city driving, we have options for you.</p>
+        <div class="card-container">
+
+            <div class="card">
+                <h3>Perodua ATIVA</h3>
+                <img src="pic/ativa.jpg" alt="SUV">
+                <P>RM 60, 000</P>
+                <p>Compact and efficient with advanced safety features. Ideal for city and off-road drives.</p>
+                <button onclick="window.open('https://wa.me/60102013832?text=I%20am%20interested%20in%20Perodua%20ATIVA')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Proton X50</h3>
+                <img src="pic/x50.jpg" alt="SUV">
+                <P>RM 99, 000</P>
+                <p>A sporty SUV with premium interiors and advanced tech features.</p>
+                <button onclick="window.open('https://wa.me/60102013832?text=I%20am%20interested%20in%20Proton%20X50')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Mitsubishi Xpander</h3>
+                <img src="pic/xpander.jpg" alt="SUV">
+                <P>RM 100, 000</P>
+                <p>Spacious and versatile with great fuel efficiency for long drives.</p>
+                <button onclick="window.open('https://wa.me/60102013832?text=I%20am%20interested%20in%20Mitsubishi%20Xpander')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Perodua ARUZ</h3>
+                <img src="pic/aruz.jpg" alt="SUV">
+                <P>RM 70, 000</P>
+                <p>Family-friendly SUV with excellent safety ratings and comfort.</p>
+                <button onclick="window.open('https://wa.me/60102013832?text=I%20am%20interested%20in%20Perodua%20ARUZ')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Toyota Fortuner</h3>
+                <img src="pic/fortuner.jpg" alt="SUV">
+                <P>RM 80, 000</P>
+                <p>A rugged and powerful SUV built for off-road adventures.</p>
+                <button onclick="window.open('https://wa.me/60102013832?text=I%20am%20interested%20in%20Toyota%20Fortuner')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Toyota RUSH</h3>
+                <img src="pic/rush.jpg" alt="SUV">
+                <P>RM 75, 000</P>
+                <p>Stylish and spacious with great reliability for long-term use.</p>
+                <button onclick="window.open('https://wa.me/60102013832?text=I%20am%20interested%20in%20Toyota%20RUSH')">Buy Here</button>
+            </div>
+
+            <div class="card">
+                <h3>Honda CR-V</h3>
+                <img src="pic/crv.jpg" alt="SUV">
+                <P>RM 120, 000</P>
+                <p>Luxury and comfort with excellent performance on all terrains.</p>
+                <button onclick="window.open('https://wa.me/60102013832?text=I%20am%20interested%20in%20Honda%20CR-V')">Buy Here</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 DriveMates AutoHub. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+

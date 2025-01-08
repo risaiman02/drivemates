@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveMates AutoHub</title>
+    <link rel="icon" type="image/png" href="pic/car.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-image: url('picture/back2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7) url('picture/ka9.png') no-repeat center/cover;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            margin-right: 1rem;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #f06969, #dd2476);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            position: relative;
+            display: inline-block;
+            padding: 0.6rem 2rem;
+            margin: 0 0.9rem;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: linear-gradient(80deg, #ff512f, #dd2476);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            transition: all 0.5s ease;
+            box-shadow: 0 4px 8px rgba(255, 81, 47, 0.3);
+        }
+
+        nav a:hover {
+            background: #fff;
+            color: #dd2476;
+            border-color: #ff512f;
+            box-shadow: 0 6px 10px rgba(255, 81, 47, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Gallery Section */
+        section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: #dd2476;
+            margin: 0.5rem auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            justify-items: center;
+            padding: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            background-color: #fff;
+            border: 4px solid #dd2476;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item img, .gallery-item video {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .feedback-badge {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: #dd2476;
+            color: #fff;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .feedback-badge span {
+            margin-left: 5px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        footer p:hover {
+            color: #f39c12;
+        }
+
+        /* Animation */
+        .gallery-item img, .gallery-item video {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeIn 1s forwards ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="pic/LOGO.png" alt="DriveMates Logo">
+        <div class="header-content">
+            <h1>DriveMates AutoHub</h1>
+            <p>Your trusted used car dealership</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="product.html">Product</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <section id="gallery">
+        <h2>Customer Feedback</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>9/10</span>
+                </div>
+                <img src="pic/feedback5.jpg" alt="Car 1">
+            </div>
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>10/10</span>
+                </div>
+                <img src="pic/feedback6.jpg" alt="Car 2">
+            </div>
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>11/10</span>
+                </div>
+                <img src="pic/feedback3.jpg" alt="Car 3">
+            </div>
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>9.5/10</span>
+                </div>
+                <img src="pic/feedback4.jpg" alt="Car 4">
+            </div>
+        </div>
+    </section>
+
+    <section id="customer-gallery">
+        <h2>Customer Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>3 JAN</span>
+                </div>
+                <img src="pic/customer1.jpg" alt="Customer 1">
+            </div>
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>6 JAN</span>
+                </div>
+                <img src="pic/customer2.jpg" alt="Customer 2">
+            </div>
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>6 FEB</span>
+                </div>
+                <img src="pic/customer3.jpg" alt="Customer 3">
+            </div>
+            <div class="gallery-item">
+                <div class="feedback-badge">
+                    <img src="pic/feedbacklogo.jpg" alt="Feedback" style="width: 30px; height: 30px;">
+                    <span>8 FEB</span>
+                </div>
+                <img src="pic/customer4.jpg" alt="Customer 4">
+            </div>
+        </div>
+    </section>
+
+    <section id="car-review">
+        <h2>Car Review</h2>
+        <h4>Click to the video buy</h4>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <a href="https://wa.me/0102013832?text=I%20am%20interested%20in%20promo%201" target="_blank">
+                    <video src="vid/carpromo1.mp4" autoplay muted loop></video>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="https://wa.me/0102013832?text=I%20am%20interested%20in%20promo%202" target="_blank">
+                    <video src="vid/carpromo2.mp4" autoplay muted loop></video>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="https://wa.me/0102013832?text=I%20am%20interested%20in%20promo%203" target="_blank">
+                    <video src="vid/carpromo3.mp4" autoplay muted loop></video>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="https://wa.me/0102013832?text=I%20am%20interested%20in%20promo%204" target="_blank">
+                    <video src="vid/carpromo4.mp4" autoplay muted loop></video>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2024 DriveMates AutoHub. All Rights Reserved.</p>
+    </footer>
+    <script>
+        // Array gambar
+        const images = ['picture/ka.webp', 'picture/ka5.jpg', 'picture/back2.jpg', 'picture/ka7.jpg'];
+        let index = 0;
+
+        // Fungsi untuk menukar gambar
+        function changeBackground() {
+            document.body.style.backgroundImage = `url(${images[index]})`;
+            index = (index + 1) % images.length; // Pindah ke gambar berikutnya
+        }
+
+        // Tukar gambar setiap 2 detik
+        setInterval(changeBackground, 2000);
+
+        // Array of colors for border animation
+        const colors = ['#ff512f', '#dd2476', '#4caf50', '#009688', '#3f51b5', '#f39c12'];
+        let colorIndex = 0;
+
+        // Function to change the border color
+        function changeBorderColor() {
+            document.querySelector('.section').style.borderColor = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length; // Move to the next color
+        }
+
+        // Change border color every 2 seconds
+        setInterval(changeBorderColor, 2000);
+    </script>
+</body>
+</html>
+
+
